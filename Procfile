@@ -1,1 +1,1 @@
-web: target/universal/stage/bin/taffeit
+web: target/universal/stage/bin/taffeit -Dhttp.port=$PORT
