@@ -1,0 +1,21 @@
+<div class="panel panel-default container " ng-controller="guestlist" xmlns:guest="http://velvet-notes.org/guest">
+
+    <div class="panel-heading ">Добавление сотрудника</div>
+
+    <div  class="panel-body">
+
+        <guest:widget model="guest"></guest:widget>
+
+        <div>
+
+            <a href="#/guestlist" >Вернуться к списку гостей</a>
+
+        </div>
+
+        <div class=" pull-right">
+
+            <button class="btn btn-success" ng-click="save(guest)" ng-disabled="guest.invalid" >Принять</button>
+
+        </div>
+    </div>
+</div>

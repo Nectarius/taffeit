@@ -1,0 +1,75 @@
+@(form: Form[(String,String)])(implicit flash: Flash)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Авторизация</title>
+     @*   <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">*@
+       @* <link rel="stylesheet" type="text/css" media="screen" href="@routes.Assets.at("stylesheets/login.css")">*@
+
+        <link href="@routes.Assets.versioned("bootstrap-3.0.2/css/bootstrap.min.css")"  rel="stylesheet">
+
+        <link href="@routes.Assets.versioned("bootstrap-3.0.2/css/bootstrap-theme.min.css")"  rel="stylesheet">
+
+        <script src="@routes.Assets.versioned("bootstrap-3.0.2/js/bootstrap.min.js")"></script>
+    </head>
+    <body>
+
+
+
+
+
+        @helper.form(routes.Application.authenticate) {
+
+            <nav class="navbar navbar-default ">
+                <div class="navbar-header ">
+                    <a class="navbar-brand">Эвенты</a>
+                </div>
+            </nav>
+
+            @form.globalError.map { error =>
+                <div id="login-error">@error.message</div>
+            }
+
+            @flash.get("success").map { message =>
+                <div id="login-error">@message</div>
+            }
+
+            <table width="100%" height="100%">
+                <tr height="66%" style="vertical-align: middle;">
+                    <td align="center">Авторизация:<br /> <br />
+                        <form name="loginForm" id="loginForm">
+                            <table>
+                                <tr>
+                                    <td>Логин&nbsp;</td>
+                                    <td> <input type="text" name="login" placeholder="login" id="login" value="@form("login").value"></td>
+                                </tr>
+                                <tr>
+                                    <td>Пароль&nbsp;</td>
+                                    <td> <input type="password" name="password" id="password" placeholder="Password"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="right">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center"><button type="submit"  id="loginbutton" class="btn btn-success"
+                                    > <i class="icon-user icon-white"></i> Sign in</button></td>
+                                </tr>
+                            </table>
+                        </form> &nbsp;<br /> &nbsp;<br /> &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+
+
+        }
+
+
+
+    </body>
+</html>

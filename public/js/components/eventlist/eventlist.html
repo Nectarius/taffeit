@@ -1,0 +1,63 @@
+<div class="panel panel-default container " ng-controller="eventlist" xmlns:ng="http://angularjs.org">
+
+    <div class="panel-heading ">Эвенты </div>
+
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ng:class="isActiveColumn('name')" ng:click="changeSorting('name')">Тема</th>
+                <th ng:class=" isActiveColumn('webSite')" ng:click="changeSorting('webSite')">web site</th>
+                <th ng:class=" isActiveColumn('path')" ng:click="changeSorting('path')">Путь до места</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in data">
+                <td><a ng:href="#/editevent/{{ item.id }}/">
+                    {{item.name}}
+                </a></td>
+
+                <td>{{item.webSite}}</td>
+                <td>{{item.path}}</td>
+
+                <td><a ng:href="#/guestlist/event{{item.id}}/">
+                    участники
+                </a></td>
+
+                <td>
+                    <button ng-click="removeevent(item.id)" class="btn btn-danger">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pull-left">
+            <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="last()">
+                Предыдущий
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button class="btn btn-primary" ng-disabled="currentPage >= totalPages-1"
+                    ng-click="next()">
+                Следующий
+            </button>
+        </div>
+        <div class="pull-right">
+            <button ng-click="newevent()" class="btn btn-success">Добавить событие</button>
+            <div class="btn-group">
+                <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Скачай отчёт<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=pdf&token=58" download="report.html">pdf</a></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=xls&token=58" download="report.html">xls</a></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=docx&token=58" download="report.html">docx</a></li>
+                    <li class="divider"></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=rtf&token=58" download="report.html">rtf</a></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=pptx&token=58" download="report.html">pptx</a></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=html&token=58" download="report.html">html</a></li>
+                    <li class="divider"></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=text&token=58" download="report.html">text</a></li>
+                    <li><a  target="_self" href="downloadEvents?eventId={{eventId}}&type=xml&token=58" download="report.html">xml</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

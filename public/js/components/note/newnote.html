@@ -1,0 +1,21 @@
+<div class="panel panel-default container " ng-controller="notelist" xmlns:note="http://velvet-notes.org/note">
+
+    <div class="panel-heading ">Добавление заметки</div>
+
+    <div class="panel-body">
+
+        <note:widget model="note"></note:widget>
+
+        <div >
+
+            <a href="#/notelist" >Вернуться к списку</a>
+
+        </div>
+
+        <div class=" pull-right">
+
+            <button class="btn btn-success" ng-click="save(note)" ng-disabled="note.invalid">Принять</button>
+
+        </div>
+    </div>
+</div>

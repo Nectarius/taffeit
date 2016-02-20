@@ -2,26 +2,103 @@ package controllers
 
 import play.api.libs.json.Json
 import play.api.mvc._
+import play.api.data._
+import play.api.data.Forms._
 
+import models._
+import views._
 
 object Application extends Controller {
 
-  def index = Action {
-    Ok(views.html.main())
+
+
+
+  val loginForm = Form(
+    tuple(
+      "login" -> text,
+      "password" -> text
+    ) verifying ("Invalid email or password", result => result match {
+      case (login, password) => Account.authenticate(login, password).isDefined
+    })
+  )
+
+
+
+  /**
+   * Login page.
+   */
+  def login = Action { implicit request =>
+    Ok(html.login(loginForm))
   }
 
-  def info = Action {
+  /**
+   * Logout and clean the session.
+   */
+  def logout = Action {
+    Redirect(routes.Application.login).withNewSession.flashing(
+      "success" -> "You've been logged out"
+    )
+  }
 
-    /*def groupViewToJson[T](entityList: List[T])(implicit writer:Writes[T]): JsValue = {
-      val jsonList = Json.toJson(
-        entityList.map( m => Json.toJson(m))
-      )
-      jsonList
+
+  /**
+   * Handle login form submission.
+   */
+  def authenticate = Action { implicit request =>
+    loginForm.bindFromRequest.fold(
+      formWithErrors => BadRequest(html.login(formWithErrors)),
+      user => Redirect(routes.Dashboard.index()).withSession("login" -> user._1)
+    )
+  }
+
+
+
+  /**
+   * Provide security features
+   */
+  trait Secured {
+
+    /**
+     * Retrieve the connected user email.
+     */
+    private def username(request: RequestHeader) = request.session.get("login")
+
+    /**
+     * Redirect to login if the user in not authorized.
+     */
+    private def onUnauthorized(request: RequestHeader) = Results.Redirect(routes.Application.login)
+
+    // --
+
+    /**
+     * Action for authenticated users.
+     */
+    def IsAuthenticated(f: => String => Request[AnyContent] => Result) = Security.Authenticated(username, onUnauthorized) { user =>
+      Action(request => f(user)(request))
+    }
+
+  /*  /**
+     * Check if the connected user is a member of this project.
+     */
+    def IsMemberOf(project: Long)(f: => String => Request[AnyContent] => Result) = IsAuthenticated { user => request =>
+      if(Project.isMember(project, user)) {
+        f(user)(request)
+      } else {
+        Results.Forbidden
+      }
+    }
+
+    /**
+     * Check if the connected user is a owner of this task.
+     */
+    def IsOwnerOf(task: Long)(f: => String => Request[AnyContent] => Result) = IsAuthenticated { user => request =>
+      if(Task.isOwner(task, user)) {
+        f(user)(request)
+      } else {
+        Results.Forbidden
+      }
     }*/
 
-    implicit val tweetFormat = Json.format[Twig]
-    val str = Json.toJson(Twig("44" ))
-    Ok(str)
   }
 
 }

@@ -1,0 +1,68 @@
+<div class="panel panel-default container " ng-controller="guestlist" xmlns:ng="http://angularjs.org">
+
+    <div class="panel-heading ">{{event.name}}  <a  class="navbar-right" ng:href="#/editevent/{{event.id}}/">
+        Подробнее
+    </a></div>
+
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ng:class="isActiveColumn('name')" ng:click="changeSorting('name')">Имя</th>
+                <th ng:class="isActiveColumn('surname')" ng:click="changeSorting('surname')">Фамилия</th>
+                <th ng:class=" isActiveColumn('status')" ng:click="changeSorting('status')">Статус</th>
+                <th ng:class=" isActiveColumn('byWhomWasAdded')" ng:click="changeSorting('byWhomWasAdded')">Кто пригл.</th>
+                <th ng:class=" isActiveColumn('transport')" ng:click="changeSorting('transport')">Как поед.?</th>
+                <th ng:class=" isActiveColumn('brief')" ng:click="changeSorting('brief')">Ком.</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in data">
+                <td><a ng:href="#/editguest/{{ item.id }}/event{{eventId}}">
+                    {{item.name}}
+                </a></td>
+
+                <td>{{item.surname}}</td>
+                <td ng:class="setStatusIcon(item.status)"></td>
+
+                <td>{{item.byWhomWasAdded}}</td>
+                <td>{{item.transport}}</td>
+                <td>{{item.brief}}</td>
+
+                <td>
+                    <button ng-click="removeguest(item.id)" class="btn btn-danger">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pull-left">
+            <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="last()">
+                Предыдущий
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button class="btn btn-primary" ng-disabled="currentPage >= totalPages-1"
+                    ng-click="next()">
+                Следующий
+            </button>
+        </div>
+        <div class="pull-right">
+            <button ng-click="newguest()" class="btn btn-success">Добавить гостя</button>
+            <div class="btn-group">
+            <button type="button" data-toggle="dropdown" class="btn btn-info dropdown-toggle">Скачай отчёт<span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=pdf&token=58" download="report.html">pdf</a></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=xls&token=58" download="report.html">xls</a></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=docx&token=58" download="report.html">docx</a></li>
+                <li class="divider"></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=rtf&token=58" download="report.html">rtf</a></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=pptx&token=58" download="report.html">pptx</a></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=html&token=58" download="report.html">html</a></li>
+                <li class="divider"></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=text&token=58" download="report.html">text</a></li>
+                <li><a  target="_self" href="downloadGuests?eventId={{eventId}}&type=xml&token=58" download="report.html">xml</a></li>
+              </ul>
+            </div>
+        </div>
+    </div>
+</div>

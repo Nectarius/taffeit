@@ -3,9 +3,44 @@
 # ~~~~
 
 # Home page
-GET        /                    controllers.Application.index
+GET        /                    controllers.Dashboard.index
+
+GET           /jsroutes.js         controllers.Dashboard.jsRoutes()
 
 # Map static resources from the /public folder to the /assets URL path
-GET        /assets/*file        controllers.Assets.versioned(path="/public", file)
+GET        /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)
 
-GET     /info                           controllers.Application.info
+GET     /notelist/:pageNumber/:pageSize/:direction/sortBy:column.data                         controllers.Dashboard.findNoteList(pageNumber: Integer, pageSize: Integer,  direction: String, column: String)
+
+GET     /note/:id.data                    controllers.Dashboard.findOne(id: Long)
+
+GET     /eventlist/:pageNumber/:pageSize/:direction/sortBy:column.data                         controllers.Dashboard.findEventList(pageNumber: Integer, pageSize: Integer,  direction: String, column: String)
+
+GET     /event/:id.data                    controllers.Dashboard.findEvent(id: Long)
+
+GET     /guestlist/event:eventId/:pageNumber/:pageSize/:direction/sortBy:column.data                         controllers.Dashboard.findGuestList(eventId: Long, pageNumber: Integer, pageSize: Integer,  direction: String, column: String)
+
+GET     /guest/:id.data                    controllers.Dashboard.findGuest(id: Long)
+
+POST    /event/save.data       controllers.Dashboard.saveEvent
+
+POST    /guest/event:eventId.data       controllers.Dashboard.saveGuest(eventId : Long)
+
+DELETE  /event/remove/:id.data  controllers.Dashboard.deleteEvent(id: Long)
+
+DELETE  /guest/remove/:id.data  controllers.Dashboard.deleteGuest(id: Long)
+
+PUT     /guest/update.data  controllers.Dashboard.updateGuest
+
+DELETE  /note/remove/:id.data  controllers.Dashboard.deleteNote(id: Long)
+
+POST   /note/save.data  controllers.Dashboard.saveNote
+
+
+
+
+# Authentication
+GET     /login                              controllers.Application.login
+POST    /login                              controllers.Application.authenticate
+GET     /logout                             controllers.Application.logout
+

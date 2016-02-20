@@ -1,10 +1,56 @@
-<!DOCTYPE html>
+@(account: Account)(body: Html)
 
-<html>
-    <head>
-        <title>Taffeit</title>
-    </head>
-    <body>
-        <h1>Prase ...</h1>
-    </body>
-</html>
+    <html  ng-app="guestpage">
+        <head>
+            <title>Taffeit</title>
+
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+            <link href="@routes.Assets.versioned("bootstrap-3.0.2/css/bootstrap.min.css")"  rel="stylesheet">
+
+            <link href="@routes.Assets.versioned("bootstrap-3.0.2/css/bootstrap-theme.min.css")"  rel="stylesheet">
+
+            <link href="@routes.Assets.versioned("events.css")"  rel="stylesheet">
+
+            <link href="@routes.Assets.versioned("font-awesome.min.css")"  rel="stylesheet">
+
+            <script src="@routes.Assets.versioned("jquery-1.11.1.min.js")"></script>
+
+            <script src="@routes.Assets.versioned("bootstrap-3.0.2/js/bootstrap.min.js")"></script>
+
+            <script src="@routes.Assets.versioned("angular/angular.js")"></script>
+
+            <script src="@routes.Assets.versioned("angular/angular-sanitize.js")"></script>
+
+            <script src="@routes.Assets.versioned("angular/angular-route.min.js")"></script>
+
+            <script src="@routes.Assets.versioned("angular/angular-loader.js")"></script>
+
+            <script src="@routes.Assets.versioned("angular/angular-resource.js")"></script>
+
+            <script src="@routes.Assets.versioned("text-angular/textAngular-sanitize.js")"></script>
+
+            <script src="@routes.Assets.versioned("text-angular/textAngular.js")"></script>
+
+            <script src="@routes.Assets.versioned("text-angular/textAngularSetup.js")"></script>
+            @*<dl id="user">
+                <dt>@account.name <span>(@account.login)</span></dt>
+                <dd>
+                    <a href="@routes.Application.logout()">Logout</a>
+                </dd>
+            </dl>*@
+        </head>
+        <body>
+
+            <nav class="navbar navbar-default ">
+                <div class="navbar-header ">
+                    <a class="navbar-brand" ng:href="#/eventlist">Эвенты</a>
+                    <a class="navbar-brand" ng:href="#/notelist">Заметки</a>
+                    <a class="navbar-brand navbar-right" href="@routes.Application.logout()" > Выйти</a>
+                </div>
+
+            </nav>
+
+            @body
+        </body>
+    </html>

@@ -1,0 +1,21 @@
+<div ng-form name="form" >
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel"  ng-class="{'asterisk': form.theme.$error.required, 'compliance': !form.theme.$error.required}">Тема заметки </span>
+    <input type="text" class="form-control " name = "theme" placeholder="Тема" ng-model="model.theme" ng-maxlength="25" required>
+    <span class="input-group-addon eLabel error-label" ng-show="form.theme.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div >
+    <div text-angular ng-model="model.text"  name="notestext" ta-min-text="5" ta-max-text="1024" >
+    </div>
+    <span class="input-group-addon eLabel error-label" ng-show="form.notestext.$error.taMaxText">Слишком длинное</span>
+    <span class="input-group-addon eLabel error-label" ng-show="form.notestext.$error.taMinText">Слишком кратко</span>
+</div>
+</p>
+</div>
+
+
+
+
+
+

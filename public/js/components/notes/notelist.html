@@ -1,0 +1,48 @@
+<div class="panel panel-default container " ng-controller="notelist" xmlns:ng="http://angularjs.org">
+
+    <div class="panel-heading ">Заметки</div>
+
+    <div class="panel-body">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th ng:class="isActiveColumn('theme')" ng:click="changeSorting('theme')">Тема</th>
+                <th ng:class=" isActiveColumn('createTime')" ng:click="changeSorting('createTime')">Добавлена</th>
+                <th ng:class=" isActiveColumn('lastUpdateTime')" ng:click="changeSorting('lastUpdateTime')">Изменения</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="item in data">
+                <td><a ng:href="#/editnote/{{ item.id }}/">
+                    {{item.theme}}
+                </a></td>
+
+                <td>{{item.createTime | date:'medium'}}</td>
+                <td>{{item.lastUpdateTime | date:'medium'}}</td>
+                <td>
+                    <button ng-click="removenote(item.id)" class="btn btn-danger">Удалить</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div class="pull-left">
+
+            <button class="btn btn-primary" ng-disabled="currentPage == 0" ng-click="last()">
+                Предыдущий
+            </button>
+            {{currentPage+1}}/{{numberOfPages()}}
+            <button class="btn btn-primary" ng-disabled="currentPage >= totalPages-1"
+                    ng-click="next()">
+                Следующий
+            </button>
+
+        </div>
+        <div class="pull-right">
+            <button ng-click="newnote()" class="btn btn-success">Добавить заметку</button>
+            <a class="btn btn btn-info" target="_self" href="download?type=pdf&token=58" download="test.html">Скачай отчёт</a>
+            <a class="btn btn btn-info" target="_blank" href="download?type=html&token=55" download="test.html">Одной страницей</a>
+        </div>
+
+    </div>
+</div>

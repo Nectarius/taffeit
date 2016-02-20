@@ -1,0 +1,32 @@
+<div ng-form name="form" >
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel" ng-class="{'asterisk': form.name.$error.required, 'compliance': !form.name.$error.required}">Название события </span>
+    <input type="text" class="form-control " name = "name" placeholder="Имя" ng-maxlength="25" ng-model="model.name" required>
+    <span class="input-group-addon eLabel error-label" ng-show="form.name.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Описание</span>
+    <input type="text" class="form-control " name = "description" ng-maxlength="25" placeholder="Комментарий" ng-model="model.description">
+    <span class="input-group-addon eLabel error-label" ng-show="form.description.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Веб сайт</span>
+    <input type="text" class="form-control " name = "webSite" placeholder="http://" ng-model="model.webSite" ng-maxlength="35">
+    <span class="input-group-addon eLabel error-label" ng-show="form.webSite.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Как добраться</span>
+    <input type="text" class="form-control " name = "path" placeholder="как добраться" ng-model="model.path" ng-maxlength="25">
+    <span class="input-group-addon eLabel error-label" ng-show="form.path.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+<div ng-form name="form" >
+<div  class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel" ng-class="{'asterisk': form.name.$error.required, 'compliance': !form.name.$error.required}">Имя</span>
+    <input type="text" class="form-control " name = "name" placeholder="Имя" ng-model="model.name"  ng-maxlength="25" required>
+    <span class="input-group-addon eLabel error-label" ng-show="form.name.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel" ng-class="{'asterisk': form.surname.$error.required, 'compliance': !form.surname.$error.required}">Фамилия</span>
+    <input type="text" class="form-control " name = "surname" placeholder="Фамилия" ng-model="model.surname" ng-maxlength="25" required>
+    <span class="input-group-addon eLabel error-label" ng-show="form.surname.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel" ng-class="{'asterisk': form.status.$error.required, 'compliance': !form.status.$error.required}">Статус</span>
+    <select class="form-control " name = "status" ng-model="model.status" ng-options="color.name for color in model.statusList" required></select>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Комментарий</span>
+    <input type="text" class="form-control " name = "commentary" placeholder="Комментарий" ng-maxlength="55" ng-model="model.brief">
+    <span class="input-group-addon eLabel error-label" ng-show="form.commentary.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Кто пригласил</span>
+    <input type="text" class="form-control " name = "byWhomWasAdded" placeholder="Кто пригласил" ng-maxlength="25" ng-model="model.byWhomWasAdded">
+    <span class="input-group-addon eLabel error-label" ng-show="form.byWhomWasAdded.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Как будет добираться</span>
+    <input type="text" class="form-control " name = "transport" placeholder="как будет добираться" ng-maxlength="35" ng-model="model.transport">
+    <span class="input-group-addon eLabel error-label" ng-show="form.transport.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+<div class="input-group input-group-lg ">
+    <span class="input-group-addon eLabel">Подробнее</span>
+    <input type="text" class="form-control " name = "description" placeholder="..." ng-maxlength="55" ng-model="model.description">
+    <span class="input-group-addon eLabel error-label" ng-show="form.description.$error.maxlength">Слишком длинное</span>
+</div>
+</p>
+</div>
+
+
+
+
+
+
